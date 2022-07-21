@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from 'src/schemas/user.schema';
+import { ResponseSuccess } from 'src/utils/response';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -18,7 +19,7 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userModel.find();
+    return ResponseSuccess("查询成功", await this.userModel.find());
   }
 
   async findOne(id: string) {
